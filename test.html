@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UTF8 Tester</title>
+    <style>
+        body {
+            margin: 40px;
+            font: 20px Helvetica, Arial, sans-serif;
+            text-transform: uppercase;
+        }
+
+    </style>
+</head>
+<body>
+
+    <input type="file" id="input">
+
+    <p id="info"></p>
+
+    <script src="is-utf8.js"></script>
+    <script src="is-utf8-filereader.js"></script>
+    <script>
+        var input = document.getElementById('input');
+        var info = document.getElementById('info');
+
+        input.addEventListener('change', function(){
+            var fileList = this.files;
+            UTF8Tester(fileList[0]).then(function(result){
+                info.textContent = result ? 'totally UTF8' : 'not at all UTF8';
+            });
+        });
+    </script>
+</body>
+</html>
