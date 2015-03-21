@@ -1,6 +1,8 @@
+(function() {
 
-exports = module.exports = function(bytes)
-{
+var root = this;
+
+var isUTF8 = function(bytes) {
     var i = 0;
     while(i < bytes.length)
     {
@@ -74,3 +76,14 @@ exports = module.exports = function(bytes)
 
     return true;
 }
+
+if (typeof exports !== 'undefined') {
+    if (typeof module !== 'undefined' && module.exports) {
+        exports = module.exports = isUTF8;
+    }
+    exports.isUTF8 = isUTF8;
+} else {
+    root.isUTF8 = isUTF8;
+}
+
+}.call(this));
